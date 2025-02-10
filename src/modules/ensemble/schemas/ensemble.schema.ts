@@ -3,6 +3,9 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 //import { User } from '../../user/schemas/user.schema';
 
+//The @Prop() decorator will be used to define the properties of the database collections.
+// The @Schema() decorator will mark a class for the schema definition
+// The @SchemaFactory() decorator will generate the schema.
 @Schema({
   timestamps: true,
 })

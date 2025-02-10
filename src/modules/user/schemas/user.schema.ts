@@ -27,6 +27,7 @@ export class User {
     //match:?,
     //minLength: 4,
     //maxLentgh: 8,
+    lowercase: true,
     unique: true,
   })
   password: string;
