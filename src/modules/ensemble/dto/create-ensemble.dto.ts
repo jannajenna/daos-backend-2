@@ -12,4 +12,6 @@ export class CreateEnsembleDto {
   description?: string;
 
   //photo
+  @IsString()
+  photo: string;
 }

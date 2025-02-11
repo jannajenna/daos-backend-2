@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-//import * as mongoose from 'mongoose';
+import * as mongoose from 'mongoose';
 import { HydratedDocument } from 'mongoose';
+import { User } from '../../user/schemas/user.schema';
+import { Ensemble } from '../../ensemble/schemas/ensemble.schema';
 
 @Schema({ timestamps: true }) // Automatically adds `createdAt` and `updatedAt`
 export class Post {
@@ -28,8 +30,19 @@ export class Post {
   instrument: string;
 
   //ensembleId
-  //@Prop({ type: Types.ObjectId, ref: 'Ensemble', required: true })
-  //ensembleId: Types.ObjectId; // The ensemble this post belongs to
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  })
+  userId: User;
+
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Ensemble',
+    required: true,
+  })
+  ensembleId: Ensemble;
 }
 
 export type PostDocument = HydratedDocument<Post>;

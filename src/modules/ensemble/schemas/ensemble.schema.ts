@@ -1,15 +1,15 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-//import * as mongoose from 'mongoose';
 import { HydratedDocument } from 'mongoose';
-//import { User } from '../../user/schemas/user.schema';
 
-//The @Prop() decorator will be used to define the properties of the database collections.
 // The @Schema() decorator will mark a class for the schema definition
-// The @SchemaFactory() decorator will generate the schema.
 @Schema({
   timestamps: true,
 })
 export class Ensemble {
+  //The @Prop() decorator defines a property in the document.
+  //https://mongoosejs.com/docs/schematypes.html
+  //The @Prop() decorator accepts an options object argument
+  //https://mongoosejs.com/docs/schematypes.html#schematype-options
   //name
   @Prop({
     //required: true,
@@ -24,11 +24,10 @@ export class Ensemble {
   description: string;
 
   //photo
-
-  //userId
-
-  //postsId
+  @Prop()
+  photo: string;
 }
 
 export type EnsembleDocument = HydratedDocument<Ensemble>;
-export const UserSchema = SchemaFactory.createForClass(Ensemble);
+// The @SchemaFactory() decorator will generate the schema Mongoose schemas based on TypeScript classes
+export const EnsembleSchema = SchemaFactory.createForClass(Ensemble);

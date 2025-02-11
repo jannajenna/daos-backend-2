@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-//import * as mongoose from 'mongoose';
 import { HydratedDocument } from 'mongoose';
 //import { Ensemble } from '../../ensemble/schemas/ensemble.schema';
 
@@ -21,23 +20,23 @@ export class User {
   })
   surname: string;
 
+  //email
+  @Prop({
+    //required: true,
+    //unique: true,
+  })
+  email: string;
+
   //password
   @Prop({
     //required: true,
     //match:?,
     //minLength: 4,
     //maxLentgh: 8,
-    lowercase: true,
-    unique: true,
+    //lowercase: true,
+    //unique: true,
   })
   password: string;
-
-  //email
-  @Prop({
-    //required: true,
-    unique: true,
-  })
-  email: string;
 
   //profile text
   @Prop({
@@ -48,10 +47,11 @@ export class User {
   //post number
   @Prop({
     //required: true,
-    min: 4,
-    max: 4,
+    //min: 4,
+    //max: 4,
+    //match: /^[0-9]{4}$/, // Ensures exactly 4 digits
   })
-  postNumber: number;
+  postNumber: string;
 
   //city
   @Prop({
@@ -62,24 +62,13 @@ export class User {
   //telephone
   @Prop({
     //required: true,
+    //match: /^[0-9]{6}$/, // Ensures exactly 6 digits
   })
-  telephone: number;
+  telephone: string;
 
   //photo
-
-  //instrument
-  @Prop({
-    trim: true,
-  })
-  instrument: string;
-
-  //ensambleId
-  //@Prop({
-  // type: mongoose.Schema.Types.ObjectId,
-  // ref: Ensemble.name,
-  //default: [],
-  //})
-  //ensembleId: Ensemble[];
+  @Prop()
+  photo: string;
 }
 
 export type UserDocument = HydratedDocument<User>;
