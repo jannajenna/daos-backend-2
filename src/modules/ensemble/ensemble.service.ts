@@ -20,7 +20,7 @@ export class EnsembleService {
     return `This action updates a #${id} ensemble`;
   }
 
-  remove(id: string) {
+  delete(id: string) {
     return `This action removes a #${id} ensemble`;
   }
 }
