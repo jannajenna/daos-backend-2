@@ -1,9 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { EnsembleService } from './ensemble.service';
 import { CreateEnsembleDto } from './dto/create-ensemble.dto';
 import { UpdateEnsembleDto } from './dto/update-ensemble.dto';
 
-@Controller('ensemble')
+@Controller('ensembles')
 export class EnsembleController {
   constructor(private readonly ensembleService: EnsembleService) {}
 
@@ -23,7 +31,10 @@ export class EnsembleController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEnsembleDto: UpdateEnsembleDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateEnsembleDto: UpdateEnsembleDto,
+  ) {
     return this.ensembleService.update(+id, updateEnsembleDto);
   }
 

@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { HydratedDocument } from 'mongoose';
-import { User } from '../user/schemas/user.schema';
-import { Ensemble } from '../ensemble/schemas/ensemble.schema';
+import { User } from '../../user/schemas/user.schema';
+import { Ensemble } from '../../ensemble/schemas/ensemble.schema';
 
 // The @Schema() decorator will mark a class for the schema definition
 @Schema({

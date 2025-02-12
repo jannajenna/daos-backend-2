@@ -7,7 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose'; //This is an ORM
 import { UserModule } from './modules/user/user.module';
 import { EnsembleModule } from './modules/ensemble/ensemble.module';
 import { PostModule } from './modules/post/post.module';
-import { Musician } from './modules/musicians/musician.schema';
+import { MusiciansModule } from './modules/musicians/musicians.module';
 
 @Module({
   //The forRoot() method accepts the same configuration object as mongoose.connect() from the Mongoose package
@@ -17,8 +17,8 @@ import { Musician } from './modules/musicians/musician.schema';
     MongooseModule.forRoot('mongodb://localhost:27017/daosdb'),
     UserModule,
     EnsembleModule,
-    Musician,
     PostModule,
+    MusiciansModule,
   ],
   //controllers: [AppController],
   //providers: [AppService],

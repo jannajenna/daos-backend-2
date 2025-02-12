@@ -24,6 +24,9 @@ export class User {
   @Prop({
     //required: true,
     //unique: true,
+    //trim: true,
+    //lowercase: true,
+    //match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   })
   email: string;
 
@@ -42,33 +45,33 @@ export class User {
   @Prop({
     trim: true,
   })
-  profileText: string;
+  profileText?: string;
 
   //post number
   @Prop({
     //required: true,
-    //min: 4,
-    //max: 4,
-    //match: /^[0-9]{4}$/, // Ensures exactly 4 digits
+    //match: /^[0-9]{4}$/,
   })
   postNumber: string;
 
   //city
   @Prop({
     //required: true,
+    trim: true,
   })
   city: string;
 
   //telephone
   @Prop({
     //required: true,
-    //match: /^[0-9]{6}$/, // Ensures exactly 6 digits
+    //unique: true,
+    //match: /^[0-9]{6}$/,
   })
   telephone: string;
 
   //photo
   @Prop()
-  photo: string;
+  photo?: string;
 }
 
 export type UserDocument = HydratedDocument<User>;

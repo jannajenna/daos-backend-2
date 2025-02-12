@@ -1,7 +1,12 @@
-import { IsString, IsOptional } from 'class-validator';
+import { IsMongoId, IsString } from 'class-validator';
 
 export class UpdateMusicianDto {
-  @IsOptional()
+  @IsMongoId()
+  userId: string;
+
+  @IsMongoId()
+  ensembleId: string;
+
   @IsString()
-  role?: 'guitarist' | 'drummer' | 'vocalist' | 'bassist';
+  role: 'guitarist' | 'drummer' | 'vocalist' | 'bassist';
 }
