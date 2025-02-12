@@ -27,7 +27,7 @@ export class EnsembleController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.ensembleService.findOne(+id);
+    return this.ensembleService.findOne(id);
   }
 
   @Patch(':id')
@@ -35,11 +35,11 @@ export class EnsembleController {
     @Param('id') id: string,
     @Body() updateEnsembleDto: UpdateEnsembleDto,
   ) {
-    return this.ensembleService.update(+id, updateEnsembleDto);
+    return this.ensembleService.update(id, updateEnsembleDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.ensembleService.remove(+id);
+    return this.ensembleService.remove(id);
   }
 }

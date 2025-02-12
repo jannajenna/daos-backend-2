@@ -12,15 +12,15 @@ export class EnsembleService {
     return `This action returns all ensemble`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} ensemble`;
   }
 
-  update(id: number, updateEnsembleDto: UpdateEnsembleDto) {
+  update(id: string, updateEnsembleDto: UpdateEnsembleDto) {
     return `This action updates a #${id} ensemble`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} ensemble`;
   }
 }

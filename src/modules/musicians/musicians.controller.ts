@@ -27,16 +27,19 @@ export class MusiciansController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.musiciansService.findOne(+id);
+    return this.musiciansService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMusicianDto: UpdateMusicianDto) {
-    return this.musiciansService.update(+id, updateMusicianDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateMusicianDto: UpdateMusicianDto,
+  ) {
+    return this.musiciansService.update(id, updateMusicianDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.musiciansService.remove(+id);
+    return this.musiciansService.remove(id);
   }
 }
