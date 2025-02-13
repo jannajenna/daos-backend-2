@@ -1,26 +1,56 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Musician } from './schema/musician.shema';
 import { CreateMusicianDto } from './dto/create-musician.dto';
 import { UpdateMusicianDto } from './dto/update-musician.dto';
 
 @Injectable()
 export class MusiciansService {
-  create(createMusicianDto: CreateMusicianDto) {
-    return 'This action adds a new musician';
+  constructor(
+    @InjectModel(Musician.name) private readonly musicianModel: Model<Musician>,
+  ) {}
+
+  async create(createMusicianDto: CreateMusicianDto): Promise<Musician> {
+    const newMusician = new this.musicianModel(createMusicianDto);
+    return newMusician.save();
   }
 
-  findAll() {
-    return `This action returns all musicians`;
+  async findAll(): Promise<Musician[]> {
+    return this.musicianModel
+      .find()
+      .populate('userId')
+      .populate('ensembleId')
+      .exec();
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} musician`;
+  async findOne(id: string): Promise<Musician> {
+    const musician = await this.musicianModel
+      .findById(id)
+      .populate('userId')
+      .populate('ensembleId')
+      .exec();
+    if (!musician) throw new NotFoundException(`Musician ${id} not found`);
+    return musician;
   }
 
-  update(id: string, updateMusicianDto: UpdateMusicianDto) {
-    return `This action updates a #${id} musician`;
+  async update(
+    id: string,
+    updateMusicianDto: UpdateMusicianDto,
+  ): Promise<Musician> {
+    const updatedMusician = await this.musicianModel
+      .findByIdAndUpdate(id, updateMusicianDto, { new: true })
+      .exec();
+    if (!updatedMusician)
+      throw new NotFoundException(`Musician ${id} not found`);
+    return updatedMusician;
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} musician`;
+  async delete(id: string): Promise<void> {
+    const deletedMusician = await this.musicianModel
+      .findByIdAndDelete(id)
+      .exec();
+    if (!deletedMusician)
+      throw new NotFoundException(`Musician ${id} not found`);
   }
 }

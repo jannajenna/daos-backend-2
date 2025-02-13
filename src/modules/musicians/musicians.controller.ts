@@ -4,12 +4,12 @@ import { CreateMusicianDto } from './dto/create-musician.dto';
 import { UpdateMusicianDto } from './dto/update-musician.dto';
 
 @Controller('musicians')
-export class MusicianController {
+export class MusiciansController {
   constructor(private readonly musicianService: MusiciansService) {}
 
   @Post()
   async addMusician(@Body() createMusicianDto: CreateMusicianDto) {
-    return this.musicianService.add(createMusicianDto);
+    return this.musicianService.create(createMusicianDto);
   }
 
   @Patch(':id')
@@ -22,6 +22,6 @@ export class MusicianController {
 
   @Delete(':id')
   async removeMusician(@Param('id') id: string) {
-    return this.musicianService.remove(id);
+    return this.musicianService.delete(id);
   }
 }
