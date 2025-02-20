@@ -17,11 +17,16 @@ export class MusiciansService {
   }
 
   async findAll(): Promise<Musician[]> {
-    return this.musicianModel
+    const musician = await this.musicianModel
       .find()
       .populate('userId')
       .populate('ensembleId')
       .exec();
+    if (!musician || musician.length === 0) {
+      return []; // ✅ Return an empty array if no musicians are found
+    }
+
+    return musician;
   }
 
   async findOne(id: string): Promise<Musician> {

@@ -8,14 +8,14 @@ import { Ensemble } from '../../ensemble/schemas/ensemble.schema';
 export class Post {
   // title
   @Prop({
-    //required: true,
+    required: true,
     trim: true,
   })
   title: string;
 
   //description
   @Prop({
-    //required: true,
+    required: true,
     //minLength: 50,
     //maxLength: 200,
     trim: true,
@@ -24,7 +24,7 @@ export class Post {
 
   //instrument
   @Prop({
-    //required: true,
+    required: true,
     trim: true,
   })
   instrument: string;

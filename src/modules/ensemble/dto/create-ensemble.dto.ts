@@ -13,5 +13,6 @@ export class CreateEnsembleDto {
 
   //photo
   @IsString()
-  photo: string;
+  @IsOptional()
+  photo?: string;
 }

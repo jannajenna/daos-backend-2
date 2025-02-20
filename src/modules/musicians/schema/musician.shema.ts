@@ -23,12 +23,12 @@ export class Musician {
     ref: 'Ensemble',
     required: true,
   })
-  ensembleID: Ensemble;
+  ensembleId: Ensemble;
 
   @Prop({
     required: true,
     //enum: Array, creates a validator that checks if the value is in the given array.
-    enum: ['guitarist', 'drummer', 'vocalist', 'bassist'],
+    enum: ['guitarist', 'drummer', 'vocalist', 'bassist', 'pianist'],
   })
   role: string;
 

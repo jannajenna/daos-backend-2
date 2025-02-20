@@ -29,7 +29,7 @@ export class UserService {
     const updateUser = await this.userModel
       .findByIdAndUpdate(id, updateUserDto, { new: true })
       .exec();
-    if (!updateUserDto) throw new NotFoundException(`User ${id} not found`);
+    if (!updateUser) throw new NotFoundException(`User ${id} not found`);
     return updateUser;
   }
   //delete a useer

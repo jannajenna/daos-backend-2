@@ -8,5 +8,5 @@ export class CreateMusicianDto {
   ensembleId: string;
 
   @IsString()
-  role: 'guitarist' | 'drummer' | 'vocalist' | 'bassist';
+  role: string;
 }

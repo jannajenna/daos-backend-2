@@ -1,4 +1,13 @@
-import { Controller, Post, Patch, Delete, Param, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Patch,
+  Delete,
+  Param,
+  Body,
+  Get,
+  NotFoundException,
+} from '@nestjs/common';
 import { MusiciansService } from './musicians.service';
 import { CreateMusicianDto } from './dto/create-musician.dto';
 import { UpdateMusicianDto } from './dto/update-musician.dto';
@@ -10,6 +19,21 @@ export class MusiciansController {
   @Post()
   async addMusician(@Body() createMusicianDto: CreateMusicianDto) {
     return this.musicianService.create(createMusicianDto);
+  }
+
+  @Get()
+  async findAll() {
+    const musicians = await this.musicianService.findAll();
+    console.log('Musicians found:', musicians); // ✅ Debugging Log
+    return musicians;
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    const musician = await this.musicianService.findOne(id);
+    if (!musician)
+      throw new NotFoundException(`Musician not found - ID: ${id}`);
+    return musician;
   }
 
   @Patch(':id')

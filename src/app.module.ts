@@ -14,7 +14,9 @@ import { MusiciansModule } from './modules/musicians/musicians.module';
   //Used to configure the global Mongoose connection for the entire application.
   //https://medium.com/@developerwhoismean/forroot-v-s-forfeature-in-nestjs-mongodb-6748d68cf762
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/daosdb'),
+    MongooseModule.forRoot(
+      process.env.MONGO_URI || 'mongodb://localhost:27017/daosdb',
+    ),
     UserModule,
     EnsembleModule,
     PostModule,

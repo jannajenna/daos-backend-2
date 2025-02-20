@@ -12,19 +12,22 @@ export class Ensemble {
   //https://mongoosejs.com/docs/schematypes.html#schematype-options
   //name
   @Prop({
-    //required: true,
+    required: true,
     trim: true,
   })
   name: string;
 
   //description
   @Prop({
+    required: false,
     trim: true,
   })
   description: string;
 
   //photo
-  @Prop()
+  @Prop({
+    required: false,
+  })
   photo: string;
 }
 
