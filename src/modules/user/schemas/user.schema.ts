@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-//import { Ensemble } from '../../ensemble/schemas/ensemble.schema';
+//Haching password
+import * as bcrypt from 'bcrypt';
 
 @Schema({
   timestamps: true,
@@ -8,36 +9,35 @@ import { HydratedDocument } from 'mongoose';
 export class User {
   //name
   @Prop({
-    //required: true,
+    required: true,
     trim: true,
   })
   name: string;
 
   //surname
   @Prop({
-    //required: true,
+    required: true,
     trim: true,
   })
   surname: string;
 
   //email
   @Prop({
-    //required: true,
-    //unique: true,
-    //trim: true,
-    //lowercase: true,
-    //match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true,
+    // Regex validation
+    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   })
   email: string;
 
   //password
   @Prop({
-    //required: true,
+    required: true,
     //match:?,
-    //minLength: 4,
-    //maxLentgh: 8,
-    //lowercase: true,
-    //unique: true,
+    minLength: 4,
+    maxLentgh: 20,
   })
   password: string;
 
@@ -49,23 +49,25 @@ export class User {
 
   //post number
   @Prop({
-    //required: true,
-    //match: /^[0-9]{4}$/,
+    required: true,
+    //4 digits post
+    match: /^[0-9]{4}$/,
   })
   postNumber: string;
 
   //city
   @Prop({
-    //required: true,
+    required: true,
     trim: true,
   })
   city: string;
 
   //telephone
   @Prop({
-    //required: true,
-    //unique: true,
-    //match: /^[0-9]{6}$/,
+    required: true,
+    unique: true,
+    //6 digit phone number
+    match: /^[0-9]{6}$/,
   })
   telephone: string;
 

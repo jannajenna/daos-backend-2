@@ -8,6 +8,8 @@ import { UserModule } from './modules/user/user.module';
 import { EnsembleModule } from './modules/ensemble/ensemble.module';
 import { PostModule } from './modules/post/post.module';
 import { MusiciansModule } from './modules/musicians/musicians.module';
+//.env file
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   //The forRoot() method accepts the same configuration object as mongoose.connect() from the Mongoose package
@@ -21,6 +23,7 @@ import { MusiciansModule } from './modules/musicians/musicians.module';
     EnsembleModule,
     PostModule,
     MusiciansModule,
+    ConfigModule.forRoot({ isGlobal: true }),
   ],
   //controllers: [AppController],
   //providers: [AppService],
