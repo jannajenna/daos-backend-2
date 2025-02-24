@@ -1,7 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-//Haching password
-import * as bcrypt from 'bcrypt';
 
 @Schema({
   timestamps: true,
@@ -12,14 +10,14 @@ export class User {
     required: true,
     trim: true,
   })
-  name: string;
+  name?: string;
 
   //surname
   @Prop({
     required: true,
     trim: true,
   })
-  surname: string;
+  surname?: string;
 
   //email
   @Prop({
@@ -45,6 +43,7 @@ export class User {
   @Prop({
     trim: true,
   })
+  //the ? indicated the fiels is optional
   profileText?: string;
 
   //post number
@@ -53,14 +52,14 @@ export class User {
     //4 digits post
     match: /^[0-9]{4}$/,
   })
-  postNumber: string;
+  postNumber?: string;
 
   //city
   @Prop({
     required: true,
     trim: true,
   })
-  city: string;
+  city?: string;
 
   //telephone
   @Prop({
@@ -69,11 +68,13 @@ export class User {
     //6 digit phone number
     match: /^[0-9]{6}$/,
   })
-  telephone: string;
+  telephone?: string;
 
   //photo
   @Prop()
   photo?: string;
+
+  //PASWORD BCRYPT
 }
 
 export type UserDocument = HydratedDocument<User>;

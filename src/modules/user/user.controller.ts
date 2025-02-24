@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   NotFoundException,
+  ConflictException
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -20,6 +21,7 @@ export class UserController {
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     console.log('Received User:', createUserDto);
+    //Write try catch error HTTP
     return this.userService.create(createUserDto);
   }
 
